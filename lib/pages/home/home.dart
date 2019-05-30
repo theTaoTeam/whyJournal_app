@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return DefaultTabController(
-      length: 4,
+      length: 3,
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(height * 0.15),
@@ -37,7 +37,6 @@ class HomePage extends StatelessWidget {
                 Tab(text: 'DAY'),
                 Tab(text: 'WEEK'),
                 Tab(text: 'MONTH'),
-                Tab(text: 'YEAR'),
               ],
             ),
           ),
@@ -59,7 +58,6 @@ class HomePage extends StatelessWidget {
               DayPage(),
               Center(child: Text('WEEK'),),
               Center(child: Text('MONTH'),),
-              Center(child: Text('YEAR'),),
             ],
           ),
         ),
