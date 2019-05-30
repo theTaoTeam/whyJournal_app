@@ -4,6 +4,8 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:journal/pages/home/home.dart';
 
+import 'helpers/design/theme.dart';
+
 void main() {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
 
 Widget _buildApp(BuildContext context) {
   return MaterialApp(
-    theme: ThemeData.dark(),
+    theme: buildAppThemeData(),
     routes: {
       '/': (BuildContext context) => HomePage(),
     },
