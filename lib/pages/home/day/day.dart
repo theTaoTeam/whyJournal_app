@@ -146,7 +146,7 @@ class _DayPageState extends State<DayPage> with SingleTickerProviderStateMixin {
                       highlightElevation: 0,
                       onPressed: () => addToTasksList(),
                     )
-              : null,
+              : null ,
         ),
         backgroundColor: Colors.transparent,
         bottomNavigationBar: TabBar(
