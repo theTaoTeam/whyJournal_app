@@ -111,39 +111,42 @@ class _DayPageState extends State<DayPage> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+    final bool showFab = MediaQuery.of(context).viewInsets.bottom == 0.0;
     return DefaultTabController(
       length: 7,
       child: Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: Container(
           height: height * 0.09,
-          child: !isAddingTask
-              ? FloatingActionButton(
-                  child: Icon(
-                    Icons.add,
-                    color: Colors.pink,
-                    size: 32,
-                  ),
-                  backgroundColor: Colors.white,
-                  focusColor: Colors.pink,
-                  highlightElevation: 0,
-                  onPressed: () {
-                    setState(() {
-                      isAddingTask = true;
-                      taskListHeight += 0.05;
-                    });
-                  },
-                )
-              : FloatingActionButton(
-                  child: Text(
-                    'save',
-                    style: TextStyle(color: Colors.pink),
-                  ),
-                  backgroundColor: Colors.white,
-                  focusColor: Colors.pink,
-                  highlightElevation: 0,
-                  onPressed: () => addToTasksList(),
-                ),
+          child: showFab
+              ? !isAddingTask
+                  ? FloatingActionButton(
+                      child: Icon(
+                        Icons.add,
+                        color: Colors.pink,
+                        size: 32,
+                      ),
+                      backgroundColor: Colors.white,
+                      focusColor: Colors.pink,
+                      highlightElevation: 0,
+                      onPressed: () {
+                        setState(() {
+                          isAddingTask = true;
+                          taskListHeight += 0.05;
+                        });
+                      },
+                    )
+                  : FloatingActionButton(
+                      child: Text(
+                        'save',
+                        style: TextStyle(color: Colors.pink),
+                      ),
+                      backgroundColor: Colors.white,
+                      focusColor: Colors.pink,
+                      highlightElevation: 0,
+                      onPressed: () => addToTasksList(),
+                    )
+              : null,
         ),
         backgroundColor: Colors.transparent,
         bottomNavigationBar: TabBar(

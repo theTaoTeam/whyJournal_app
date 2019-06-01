@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tags/selectable_tags.dart';
 
@@ -54,6 +55,7 @@ Widget makeAddListTile(
           children: <Widget>[
             needsValue ? Text('Select a value for your task',style: TextStyle( color: Colors.red)) : Container(),
             TextField(
+              textInputAction: TextInputAction.done,
               autofocus: true,
               decoration: InputDecoration(
                 hintText: 'Task Name',
