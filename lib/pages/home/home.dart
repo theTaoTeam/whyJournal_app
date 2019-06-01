@@ -10,6 +10,8 @@ class HomePage extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomInset: false,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(height * 0.15),
           child: AppBar(
@@ -27,11 +29,12 @@ class HomePage extends StatelessWidget {
               )
             ],
             bottom: TabBar(
-              indicatorPadding: EdgeInsets.fromLTRB(37, 0, 37, 0),
+              indicatorPadding: EdgeInsets.fromLTRB(50, 0, 50, 0),
               indicatorWeight: 3,
               indicatorColor: Colors.pink,
               labelColor: Colors.pink,
-              labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, letterSpacing: 1),
+              labelStyle: TextStyle(
+                  fontSize: 15, fontWeight: FontWeight.w700, letterSpacing: 1),
               unselectedLabelColor: Colors.grey,
               tabs: [
                 Tab(text: 'DAY'),
@@ -42,22 +45,16 @@ class HomePage extends StatelessWidget {
           ),
         ),
         body: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            stops: [0.4, 1],
-            colors: [
-              Theme.of(context).primaryColor,
-              Color(0xffAD1DEB),
-            ],
-          )),
           padding: EdgeInsets.only(bottom: height * 0.08),
           child: TabBarView(
             children: <Widget>[
               DayPage(),
-              Center(child: Text('WEEK'),),
-              Center(child: Text('MONTH'),),
+              Center(
+                child: Text('WEEK'),
+              ),
+              Center(
+                child: Text('MONTH'),
+              ),
             ],
           ),
         ),
