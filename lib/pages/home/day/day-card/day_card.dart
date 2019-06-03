@@ -7,7 +7,6 @@ import 'package:journal/helpers/design/widgets/list_tile.dart';
 class DayCard extends StatelessWidget {
   final double taskListHeight;
   final bool isAddingTask;
-  final bool needsValue;
   final List<dynamic> tasks;
   final List<Tag> tags;
   final Function addToTasksList;
@@ -16,23 +15,23 @@ class DayCard extends StatelessWidget {
   final Function updateNewTaskValue;
   final Function toggleCompleteTask;
 
-
   DayCard(
       {this.tasks,
       this.addToTasksList,
       this.removeFromTasksList,
       this.taskListHeight,
       this.tags,
-      this.needsValue,
       this.isAddingTask,
       this.updateNewTaskName,
-      this.updateNewTaskValue, this.toggleCompleteTask});
+      this.updateNewTaskValue,
+      this.toggleCompleteTask});
 
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Container(
+      color: Colors.white,
       child: ListView(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
@@ -60,7 +59,7 @@ class DayCard extends StatelessWidget {
           isAddingTask
               ? Container(
                   padding: EdgeInsets.only(left: width * 0.043),
-                  child: makeAddListTile(width, height, context, isAddingTask, needsValue,
+                  child: makeAddListTile(width, height, context, isAddingTask,
                       updateNewTaskName, tags, updateNewTaskValue),
                 )
               : Container(),
@@ -72,17 +71,31 @@ class DayCard extends StatelessWidget {
                     physics: ClampingScrollPhysics(),
                     itemCount: tasks.length,
                     itemBuilder: (BuildContext context, int index) {
-                      
-                      return makeDailyTaskCard(context, width, height, index,
-                          tasks[index], removeFromTasksList, toggleCompleteTask);
+                      return Padding(
+                        padding: EdgeInsets.only(left: width * 0.05),
+                        child: makeDailyTaskCard(
+                            context,
+                            width,
+                            height,
+                            index,
+                            tasks[index],
+                            removeFromTasksList,
+                            toggleCompleteTask),
+                      );
                     },
                   ),
                 )
               : !isAddingTask
                   ? Container(
                       padding: EdgeInsets.only(left: width * 0.043),
-                      child: makeAddListTile(width, height, context,
-                          isAddingTask, needsValue, updateNewTaskName, tags, updateNewTaskValue),
+                      child: makeAddListTile(
+                          width,
+                          height,
+                          context,
+                          isAddingTask,
+                          updateNewTaskName,
+                          tags,
+                          updateNewTaskValue),
                     )
                   : Container(),
           Container(height: height * 0.05),
