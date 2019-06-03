@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_tags/input_tags.dart';
 import 'package:flutter_tags/selectable_tags.dart';
 
 import 'package:journal/pages/home/day/day-card/day_card.dart';
@@ -15,7 +14,7 @@ class DayPage extends StatefulWidget {
 class _DayPageState extends State<DayPage> with SingleTickerProviderStateMixin {
   TabController _tabController;
   final List<dynamic> tasks = [];
-  double taskListHeight = 0.01;
+  double taskListHeight = 0.015;
   bool isAddingTask = false;
   bool needsValue = false;
   Map<String, dynamic> newTask = {
@@ -92,7 +91,7 @@ class _DayPageState extends State<DayPage> with SingleTickerProviderStateMixin {
   }
 
   void updateNewTaskValue(String val) {
-    print(val);
+    // print(val);
     setState(() {
       needsValue = false;
       newTask['value'] = val;
@@ -100,7 +99,7 @@ class _DayPageState extends State<DayPage> with SingleTickerProviderStateMixin {
   }
 
   void toggleCompleteTask(String title) {
-    print('toggling task completeness');
+    // print('toggling task completeness');
     setState(() {
       int index = tasks.indexWhere((val) => val['title'] == title);
       tasks[index]['isComplete'] = !tasks[index]['isComplete'];
@@ -115,7 +114,7 @@ class _DayPageState extends State<DayPage> with SingleTickerProviderStateMixin {
     return DefaultTabController(
       length: 7,
       child: Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: Container(
           height: height * 0.09,
           child: showFab
@@ -123,12 +122,13 @@ class _DayPageState extends State<DayPage> with SingleTickerProviderStateMixin {
                   ? FloatingActionButton(
                       child: Icon(
                         Icons.add,
-                        color: Colors.pink,
+                        color: Colors.white,
                         size: 32,
                       ),
-                      backgroundColor: Colors.white,
-                      focusColor: Colors.pink,
-                      highlightElevation: 0,
+                      backgroundColor: Colors.pink,
+                      focusColor: Colors.white,
+                      elevation: 2,
+                      highlightElevation: 4,
                       onPressed: () {
                         setState(() {
                           isAddingTask = true;
@@ -136,17 +136,29 @@ class _DayPageState extends State<DayPage> with SingleTickerProviderStateMixin {
                         });
                       },
                     )
-                  : FloatingActionButton(
-                      child: Text(
-                        'save',
-                        style: TextStyle(color: Colors.pink),
-                      ),
-                      backgroundColor: Colors.white,
-                      focusColor: Colors.pink,
-                      highlightElevation: 0,
-                      onPressed: () => addToTasksList(),
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        needsValue
+                            ? Container(
+                                margin: EdgeInsets.only(right: width * 0.03),
+                                child: Text('Your task still needs a value',
+                                    style: TextStyle(color: Colors.pink)))
+                            : Container(),
+                        FloatingActionButton(
+                          child: Text(
+                            'save',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          backgroundColor: Colors.pink,
+                          focusColor: Colors.white,
+                          elevation: 2,
+                          highlightElevation: 4,
+                          onPressed: () => addToTasksList(),
+                        )
+                      ],
                     )
-              : null ,
+              : null,
         ),
         backgroundColor: Colors.transparent,
         bottomNavigationBar: TabBar(
@@ -178,7 +190,6 @@ class _DayPageState extends State<DayPage> with SingleTickerProviderStateMixin {
               DayCard(
                 tasks: tasks,
                 tags: tags,
-                needsValue: needsValue,
                 addToTasksList: addToTasksList,
                 removeFromTasksList: removeFromTasksList,
                 taskListHeight: taskListHeight,
@@ -190,7 +201,6 @@ class _DayPageState extends State<DayPage> with SingleTickerProviderStateMixin {
               DayCard(
                 tasks: tasks,
                 tags: tags,
-                needsValue: needsValue,
                 addToTasksList: addToTasksList,
                 removeFromTasksList: removeFromTasksList,
                 taskListHeight: taskListHeight,
@@ -202,7 +212,6 @@ class _DayPageState extends State<DayPage> with SingleTickerProviderStateMixin {
               DayCard(
                 tasks: tasks,
                 tags: tags,
-                needsValue: needsValue,
                 addToTasksList: addToTasksList,
                 removeFromTasksList: removeFromTasksList,
                 taskListHeight: taskListHeight,
@@ -214,7 +223,6 @@ class _DayPageState extends State<DayPage> with SingleTickerProviderStateMixin {
               DayCard(
                 tasks: tasks,
                 tags: tags,
-                needsValue: needsValue,
                 addToTasksList: addToTasksList,
                 removeFromTasksList: removeFromTasksList,
                 taskListHeight: taskListHeight,
@@ -226,7 +234,6 @@ class _DayPageState extends State<DayPage> with SingleTickerProviderStateMixin {
               DayCard(
                 tasks: tasks,
                 tags: tags,
-                needsValue: needsValue,
                 addToTasksList: addToTasksList,
                 removeFromTasksList: removeFromTasksList,
                 taskListHeight: taskListHeight,
@@ -238,7 +245,6 @@ class _DayPageState extends State<DayPage> with SingleTickerProviderStateMixin {
               DayCard(
                 tasks: tasks,
                 tags: tags,
-                needsValue: needsValue,
                 addToTasksList: addToTasksList,
                 removeFromTasksList: removeFromTasksList,
                 taskListHeight: taskListHeight,
@@ -250,7 +256,6 @@ class _DayPageState extends State<DayPage> with SingleTickerProviderStateMixin {
               DayCard(
                 tasks: tasks,
                 tags: tags,
-                needsValue: needsValue,
                 addToTasksList: addToTasksList,
                 removeFromTasksList: removeFromTasksList,
                 taskListHeight: taskListHeight,

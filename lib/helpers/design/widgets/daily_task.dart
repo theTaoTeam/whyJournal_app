@@ -50,11 +50,8 @@ Widget makeDailyTaskCard(BuildContext context, double width, double height,
     child: Card(
       color: Colors.transparent,
       elevation: 0.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(0),
-      ),
       child: Container(
-        margin: EdgeInsets.only(left: width * 0.05),
+        width: width ,
         decoration: BoxDecoration(
             border: Border(
                 bottom: BorderSide(width: 0.3, color: Colors.grey.shade600))),

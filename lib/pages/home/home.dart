@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
           child: AppBar(
             elevation: 0,
             backgroundColor: Theme.of(context).primaryColor,
-            leading: Icon(Icons.menu, color: Colors.pink),
+            leading: Container(),
             title: Container(),
             actions: <Widget>[
               Container(
@@ -46,6 +46,7 @@ class HomePage extends StatelessWidget {
         ),
         body: Container(
           padding: EdgeInsets.only(bottom: height * 0.08),
+          color: Colors.white,
           child: TabBarView(
             children: <Widget>[
               DayPage(),

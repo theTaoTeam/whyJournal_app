@@ -4,29 +4,32 @@ import 'package:flutter_tags/selectable_tags.dart';
 
 Widget makeListTile(double width, double height, BuildContext context,
     Map<String, dynamic> task, Function toggleCompleteTask) {
-  print(task);
+  // print(task);
   return ListTile(
-    contentPadding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+    contentPadding: EdgeInsets.only(right: 100),
     title: Container(
       child: Text(
         task['title'],
         overflow: TextOverflow.ellipsis,
       ),
     ),
-    leading: Container(
-      // width: width * 0.01,
-      child: IconButton(
-          icon: !task['isComplete']
-              ? Icon(Icons.radio_button_unchecked)
-              : Icon(
-                  Icons.check,
-                  color: Colors.pink,
-                ),
-          onPressed: () {
-            print('pressing toggle');
-            toggleCompleteTask(task['title']);
-          }),
-    ),
+    leading: IconButton(
+        splashColor: Colors.transparent,
+        icon: !task['isComplete']
+            ? Icon(
+                Icons.radio_button_unchecked,
+                color: Colors.grey,
+                size: 29,
+              )
+            : Icon(
+                Icons.check,
+                color: Colors.pink,
+                size: 29,
+              ),
+        onPressed: () {
+          // print('pressing toggle');
+          toggleCompleteTask(task['title']);
+        }),
     subtitle: Container(
       margin: EdgeInsets.only(top: 5),
       child: Text(
@@ -42,7 +45,6 @@ Widget makeAddListTile(
     double height,
     BuildContext context,
     bool isAddingTask,
-    bool needsValue,
     Function updateNewTaskName,
     List<Tag> _tags,
     Function updateNewTaskValue) {
@@ -53,10 +55,8 @@ Widget makeAddListTile(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            needsValue ? Text('Select a value for your task',style: TextStyle( color: Colors.red)) : Container(),
             TextField(
               textInputAction: TextInputAction.done,
-              autofocus: true,
               decoration: InputDecoration(
                 hintText: 'Task Name',
                 border: InputBorder.none,
@@ -78,7 +78,7 @@ Widget makeAddListTile(
               onPressed: (tag) {
                 updateNewTaskValue(tag.title);
               },
-            )
+            ),
           ],
         ),
       ),
